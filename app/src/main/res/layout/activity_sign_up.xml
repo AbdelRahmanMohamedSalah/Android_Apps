@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackColor"
+    tools:context=".gui.signup.SignUpActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/description_font"
+            android:gravity="center"
+            android:text="عمل حساب جديد"
+            android:textColor="@color/dark_white"
+            android:textSize="28sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_weight="50"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/input_et"
+                        android:hint="الاسم الثاني"
+                        android:inputType="text"
+                        android:padding="10dp"
+                        android:maxLines="1"
+                        android:id="@+id/lNameEt"
+                        android:fontFamily="@font/sub_title_font"
+                        android:textColor="@color/dark_white"
+                        android:textColorHint="@color/dark_white"
+                        />
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_weight="50"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:background="@drawable/input_et"
+                        android:hint="الاسم الأول"
+                        android:inputType="text"
+                        android:id="@+id/firstName"
+                        android:padding="10dp"
+                        android:maxLines="1"
+                        android:imeOptions="actionNext"
+                        android:nextClusterForward="@id/lNameEt"
+                        android:fontFamily="@font/sub_title_font"
+                        android:textColor="@color/dark_white"
+                        android:textColorHint="@color/dark_white"
+                        />
+                </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/input_et"
+            android:hint="الأسم المستعار"
+            android:inputType="text"
+            android:padding="10dp"
+            android:id="@+id/nickName"
+            android:maxLines="1"
+            android:nextFocusDown="@id/confirmPassTv"
+            android:fontFamily="@font/sub_title_font"
+            android:textColor="@color/dark_white"
+            android:textColorHint="@color/dark_white" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/input_et"
+                    android:ems="10"
+                    android:hint="البريد الألكتروني"
+                    android:inputType="textEmailAddress"
+                    android:padding="10dp"
+                    android:id="@+id/emailTv"
+                    android:maxLines="1"
+                    android:nextFocusDown="@id/passwordTv"
+                    android:fontFamily="@font/sub_title_font"
+                    android:textColor="@color/dark_white"
+                    android:textColorHint="@color/dark_white" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/input_et"
+                    android:hint="كلمة المرور"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:gravity="end"
+                    android:id="@+id/passwordTv"
+                    android:maxLines="1"
+                    android:nextFocusDown="@id/confirmPassTv"
+                    android:fontFamily="@font/sub_title_font"
+                    android:textColor="@color/dark_white"
+                    android:textColorHint="@color/dark_white" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/input_et"
+                    android:hint="تأكيد كلمة المرور"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:nextFocusDown="@id/phoneTv"
+                    android:id="@+id/confirmPassTv"
+                    android:fontFamily="@font/sub_title_font"
+                    android:textColor="@color/dark_white"
+                    android:textColorHint="@color/dark_white" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/input_et"
+                    android:hint="رقم الهاتف"
+                    android:inputType="phone"
+                    android:padding="10dp"
+                    android:gravity="end"
+                    android:maxLines="1"
+                    android:fontFamily="@font/sub_title_font"
+                    android:textColor="@color/dark_white"
+                    android:textColorHint="@color/dark_white"
+                    android:id="@+id/phoneTv"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@drawable/input_et"
+                    android:hint="مهتم ب"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    android:maxLines="1"
+                    android:id="@+id/interistTv"
+                    android:fontFamily="@font/sub_title_font"
+                    android:textColor="@color/dark_white"
+                    android:textColorHint="@color/dark_white"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:buttonTint="@color/dark_white"
+                        android:layoutDirection="rtl"
+                        android:text="سلع اخري "
+                        android:textColor="@color/dark_white"
+                        android:textSize="18sp"
+                        android:id="@+id/othertChB" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:buttonTint="@color/dark_white"
+                        android:layoutDirection="rtl"
+                        android:text="هوايات و انتيكات "
+                        android:textColor="@color/dark_white"
+                        android:textSize="18sp"
+                        android:id="@+id/antekatChB"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/signUpBtn"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/btn_radius"
+                    android:fontFamily="@font/description_font"
+                    android:text="التالي"
+                    android:textColor="#fff"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+
+</ScrollView>

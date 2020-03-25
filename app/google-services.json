@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "435451666788",
+    "firebase_url": "https://mazadangy-58539.firebaseio.com",
+    "project_id": "mazadangy-58539",
+    "storage_bucket": "mazadangy-58539.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435451666788:android:4f2dc1b133e5514c4a1a71",
+        "android_client_info": {
+          "package_name": "com.mazad.mazadangy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435451666788-7pi9v53dgsrq6p81113ufi5qd29usoq0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mazad.mazadangy",
+            "certificate_hash": "63eb68ee043fd8e51491d1c0588ff9c37749798c"
+          }
+        },
+        {
+          "client_id": "435451666788-flekj594ne0ub6f8gnsv4pf6lmh7fhfc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs93cEHHlMazvidAX1XQt_hn_mu2-QTLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435451666788-flekj594ne0ub6f8gnsv4pf6lmh7fhfc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
