@@ -8,5 +8,6 @@
     <color name="dark_white">#D1C8C8</color>
     <color name="red">#F90000</color>
     <color name="white">#ffff</color>
+    <color name="smothBlack">#32000000</color>
 
 </resources>

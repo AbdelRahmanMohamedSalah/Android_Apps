@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackColor"
+    android:orientation="vertical"
+    tools:context=".gui.PostDetails.PostDetailsActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/description_font"
+        android:gravity="center"
+        android:text="تفاصيل الاعلان"
+        android:textColor="@color/dark_white"
+        android:textSize="28sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/dark_white" />
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:paddingBottom="10dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/coin" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="6dp"
+                    android:padding="6dp"
+                    android:text="مائه جنيه استرلينى عام 1970"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/input_et_ads"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="101"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="بند رقم :"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/input_et_ads"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="بدون رجوع"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="استرجاع العمله :"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/input_et_ads"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="في منتصف الليل"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="نهايه الاعلان :"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/input_et_ads"
+                android:orientation="horizontal"
+                android:padding="6dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1500 EGP"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/dark_white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="السعر الاولى :"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="6dp"
+                android:background="@drawable/input_et_ads"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="وصف العمله :"
+                    android:textSize="20sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=" للبيع 20 جنيه استرلينى ترجع لعام 1970 ..الورقه حالتها كالجديده ليس بها اى قطع بدايه السعر لدخول المزاد 15000 EGP"
+                    android:textSize="20sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/input_et_ads"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:id="@+id/imgeProfileCv"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/input_et_ads"
+                    android:src="@drawable/car" />
+
+                <TextView
+                    android:id="@+id/nameUserTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:fontFamily="@font/sub_title_font"
+                    android:text="Karim Ahmed"
+                    android:textSize="20sp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

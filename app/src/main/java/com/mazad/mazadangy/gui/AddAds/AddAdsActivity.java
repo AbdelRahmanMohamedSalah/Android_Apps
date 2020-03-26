@@ -245,7 +245,7 @@ public class AddAdsActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         tvStartDate.setText(dayOfMonth + "/" + (month + 1) + "/" + (year));
-                        start_ads = (dayOfMonth + "/" + (month + 1) + "/" + (year));
+                        start_ads = (dayOfMonth + "/" + (month + 1) + "/" + (year)+" 24:00:00");
 
                     }
                 }, day, month, year);
@@ -266,7 +266,7 @@ public class AddAdsActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         tvEndDate.setText(dayOfMonth + "/" + (month + 1) + "/" + (year));
-                        end_ads = (dayOfMonth + "/" + (month + 1) + "/" + (year));
+                        end_ads = (dayOfMonth + "/" + (month + 1) + "/" + (year)+" 24:00:00");
                     }
                 }, day, month, year);
 

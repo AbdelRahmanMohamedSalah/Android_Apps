@@ -3,40 +3,39 @@ package com.mazad.mazadangy.adapter
 import android.content.Context
 import android.content.Intent
 import android.os.CountDownTimer
-import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.mazad.mazadangy.R
+import com.mazad.mazadangy.gui.PostDetails.PostDetailsActivity
 import com.mazad.mazadangy.model.AdsModel
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
     lateinit var adsList: ArrayList<AdsModel>
     lateinit var context: Context
-    lateinit var database:FirebaseDatabase
-    lateinit var databaseRefrance:DatabaseReference
+    lateinit var database: FirebaseDatabase
+    lateinit var databaseRefrance: DatabaseReference
+    lateinit var databaseRefranceUser: DatabaseReference
 
-
-    private lateinit var countDownTimer:CountDownTimer
+    private lateinit var countDownTimer: CountDownTimer
 
 
     constructor(context: Context, adsList: ArrayList<AdsModel>) : this() {
         this.adsList = adsList
         this.context = context
-        database= FirebaseDatabase.getInstance()
-        databaseRefrance=database.getReference("mony_post")
+        database = FirebaseDatabase.getInstance()
+        databaseRefrance = database.getReference("mony_post")
+        databaseRefranceUser = database.getReference("users")
+
     }
 
     class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -45,8 +44,8 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
         var startPriceTv: TextView
         var countDownTimerTextView: TextView
         var imgeAdIv: ImageView
-       // var interMazadBtn: Button
-       var imgeProfileCv: CircleImageView
+        // var interMazadBtn: Button
+        var imgeProfileCv: CircleImageView
 
         init {
             nameUserTv = itemView.findViewById(R.id.nameUserTv)
@@ -71,19 +70,64 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val adsModel:AdsModel=adsList.get(position)
-        holder.descTv.text=adsList[position].desc_money
-        var s:String=adsList[position].start_price
+        val adsModel: AdsModel = adsList.get(position)
+        var uid = adsList[position].userId
+      //  var name = String();
+        // String: name"";
+     //        ef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                Post post = dataSnapshot.getValue(Post.class);
+//                System.out.println(post);
+//            }
+
+//}
+
+
+
+
+
+        holder.descTv.text = adsList[position].desc_money
+
+        holder.countDownTimerTextView.text = adsList[position].end_time
+
+        var s: String = adsList[position].start_price
         holder.startPriceTv.text="السهر يبدأ من "+adsList[position].start_price
         var st:String=adsList[position].end_ads
+
         printDifferenceDateForHours(adsList[position].end_ads,holder.countDownTimerTextView)
-        holder.nameUserTv.text="كريم أحمد"
+       // holder.nameUserTv.text = "" + name
         var imgeList: List<String> =adsList[position].imge
         Picasso.get().load(imgeList[1]).into(holder.imgeAdIv)
         Picasso.get().load(R.drawable.profile_ph).into(holder.imgeProfileCv)
+
+        val menuListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var user: ArrayList<String>;
+                //  menu.clear()
+                // dataSnapshot.children.mapNotNullTo(menu) { it.getValue<user>(user::class.java) }
+                var  name = dataSnapshot.child("firstName").getValue(String::class.java)
+                holder.nameUserTv.text = "" + name
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("loadPost:onCancelled ${databaseError.toException()}")
+            }
+        }
+        databaseRefranceUser.child(uid.toString()).addListenerForSingleValueEvent(menuListener)
+
+
+
+
         holder.itemView.setOnClickListener(object :View.OnClickListener{
             override fun onClick(v: View?) {
-//                var intent:Intent= Intent(context,DisplayAdsActivity::class.java)
+
+                val intent = Intent(context, PostDetailsActivity::class.java)
+
+//                intent.putExtra("MyClass", adsList);
+                context.startActivity(intent)
+
             }
         })
     }
@@ -95,6 +139,8 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
         val currentTime = Calendar.getInstance().time
 //        val endDateDay = "19/03/2020 21:00:00"
         val format1 = SimpleDateFormat("dd/MM/yyyy hh:mm:ss",Locale.getDefault())
+//        val format1 = SimpleDateFormat("dd/MM/yyyy",Locale.getDefault())
+
         val endDate = format1.parse(endDateDay)
 
         //milliseconds
@@ -123,7 +169,7 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
             }
 
             override fun onFinish() {
-                dateTv.text = "Saled!"
+//                dateTv.text = "Saled!"
             }
         }.start()
     }
