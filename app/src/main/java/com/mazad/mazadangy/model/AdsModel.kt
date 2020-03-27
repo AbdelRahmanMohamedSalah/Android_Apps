@@ -1,6 +1,8 @@
 package com.mazad.mazadangy.model
 
-class AdsModel {
+import java.io.Serializable
+
+class AdsModel : Serializable {
     lateinit var back_sale:String
     lateinit var count_price:String
     lateinit var desc_money:String

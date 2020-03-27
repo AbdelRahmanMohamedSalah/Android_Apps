@@ -125,7 +125,7 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
 
                 val intent = Intent(context, PostDetailsActivity::class.java)
 
-//                intent.putExtra("MyClass", adsList);
+                intent.putExtra("MyClass", adsModel);
                 context.startActivity(intent)
 
             }
