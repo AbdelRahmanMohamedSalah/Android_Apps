@@ -7,21 +7,21 @@
     android:orientation="vertical"
     tools:context=".gui.PostDetails.PostDetailsActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/description_font"
-        android:gravity="center"
-        android:text="تفاصيل الاعلان"
-        android:textColor="@color/dark_white"
-        android:textSize="28sp" />
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        android:layout_marginBottom="8dp"-->
+    <!--        android:fontFamily="@font/description_font"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="تفاصيل الاعلان"-->
+    <!--        android:textColor="@color/dark_white"-->
+    <!--        android:textSize="28sp" />-->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:background="@color/dark_white" />
+    <!--    <View-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="2px"-->
+    <!--        android:background="@color/dark_white" />-->
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -35,6 +35,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/description_font"
+                android:gravity="center"
+                android:text="تفاصيل الاعلان"
+                android:textSize="28sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/blackColor" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -232,6 +248,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layoutUserDetailsPostActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -242,7 +259,7 @@
                 android:padding="10dp"
                 android:layout_marginBottom="10dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgeProfileCv"
                     android:layout_width="50dp"
                     android:layout_height="50dp"

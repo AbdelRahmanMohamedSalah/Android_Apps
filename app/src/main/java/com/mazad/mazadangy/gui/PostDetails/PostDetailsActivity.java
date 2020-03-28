@@ -2,13 +2,16 @@ package com.mazad.mazadangy.gui.PostDetails;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.mazad.mazadangy.R;
+import com.mazad.mazadangy.gui.UserDetails.UserDetailsActivity;
 import com.mazad.mazadangy.model.AdsModel;
 import com.squareup.picasso.Picasso;
 
@@ -19,6 +22,7 @@ import java.util.List;
 public class PostDetailsActivity extends AppCompatActivity {
     TextView tv_title, tv_desc, tv_backSale, tv_startPrice, tv_endTime, tv_pandNum;
     ImageView image;
+    LinearLayout layout_user;
     //List<String> imageList;
     List<String> imageList;
     @Override
@@ -37,9 +41,18 @@ public class PostDetailsActivity extends AppCompatActivity {
         imageList = new ArrayList<String>(Collections.singleton(model.imge.get(1).toString()));
         Picasso.get().load(imageList.get(0)).into(image);
         setValue(model);
+
+        layout_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PostDetailsActivity.this, UserDetailsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void intilize() {
+        layout_user = findViewById(R.id.layoutUserDetailsPostActivity);
         tv_title = findViewById(R.id.tvTitleDetailsPostActivity);
         tv_desc = findViewById(R.id.tvDescDetailsPostActivity);
         tv_backSale = findViewById(R.id.tvBackSaleDetailsPostActivity);

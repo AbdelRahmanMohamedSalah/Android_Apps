@@ -26,6 +26,7 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
     lateinit var databaseRefrance: DatabaseReference
     lateinit var databaseRefranceUser: DatabaseReference
 
+
     private lateinit var countDownTimer: CountDownTimer
 
 
@@ -91,8 +92,11 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
                 var user: ArrayList<String>;
                 //  menu.clear()
                 // dataSnapshot.children.mapNotNullTo(menu) { it.getValue<user>(user::class.java) }
+
+
                 var  name = dataSnapshot.child("firstName").getValue(String::class.java)
                 holder.nameUserTv.text = "" + name
+
 
             }
 
