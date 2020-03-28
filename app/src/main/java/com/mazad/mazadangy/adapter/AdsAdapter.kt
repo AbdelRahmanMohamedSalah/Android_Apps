@@ -72,23 +72,8 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
     override fun onBindViewHolder(holder: VH, position: Int) {
         val adsModel: AdsModel = adsList.get(position)
         var uid = adsList[position].userId
-      //  var name = String();
-        // String: name"";
-     //        ef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                Post post = dataSnapshot.getValue(Post.class);
-//                System.out.println(post);
-//            }
-
-//}
-
-
-
-
 
         holder.descTv.text = adsList[position].desc_money
-
         holder.countDownTimerTextView.text = adsList[position].end_time
 
         var s: String = adsList[position].start_price
