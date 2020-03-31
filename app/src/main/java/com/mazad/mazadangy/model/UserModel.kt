@@ -13,4 +13,23 @@ class UserModel : Serializable {
     // lateinit var categories:String
     lateinit var categories: List<String>
 
+    constructor(
+        uId: String,
+        phoneNumber: String,
+        nickname: String,
+        lastname: String,
+        interest:String,
+        firstname: String,
+        email: String
+    ){
+        this.uId=uId
+        this.phoneNumber=phoneNumber
+        this.nickname=nickname
+        this.lastName=lastname
+        this.interest=interest
+        this.firstName=firstname
+        this.email=email
+
+    }
+
 }

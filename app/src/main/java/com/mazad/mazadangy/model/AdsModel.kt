@@ -10,6 +10,8 @@ class AdsModel : Serializable {
     lateinit var end_time:String
     lateinit var pand_num:String
     lateinit var start_price:String
+    lateinit var end_price:String
+
     lateinit var status_money:String
     lateinit var userId:String
 

@@ -3,15 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/blackColor"
 
     tools:context=".gui.AddAds.AddAdsActivity">
 
 
     <LinearLayout
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
@@ -31,7 +32,6 @@
             android:background="@color/dark_white" />
 
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,19 +39,26 @@
             android:fontFamily="@font/description_font"
             android:gravity="center"
             android:text="اضافه صورة للاعلان"
-            android:textColor="@color/dark_white"
-
-            />
+            android:textColor="@color/dark_white" />
 
         <ImageView
             android:id="@+id/imageAddAdsActivity"
-            android:background="@drawable/input_et_ads"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
+            android:background="@drawable/input_et_ads"
             android:scaleType="centerInside"
             android:src="@drawable/add_icon_grey_192x192" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgePickRV"
+            android:visibility="visible"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/list_item_singl"/>
 
         <EditText
             android:id="@+id/etPandNumAddAdsActivity"
@@ -377,20 +384,20 @@
                 android:text="رافعه"
                 android:textColor="@color/dark_white"
                 android:textSize="18sp" />
-<!--<View-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="1px"-->
-<!--    android:background="@color/dark_white"-->
-<!--    />-->
+            <!--<View-->
+            <!--    android:layout_width="match_parent"-->
+            <!--    android:layout_height="1px"-->
+            <!--    android:background="@color/dark_white"-->
+            <!--    />-->
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/layoutAddMoneyAddAdsActivity"
-                android:layout_margin="8dp"
-                android:gravity="center"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/buttonRemoveMoneyAddAdsActivity"
@@ -438,11 +445,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="8dp"
-                android:foregroundTint="@color/dark_white"
                 android:backgroundTint="@color/dark_white"
+                android:drawSelectorOnTop="true"
+                android:foregroundTint="@color/dark_white"
                 android:gravity="right"
                 android:text="الحاله"
-                android:drawSelectorOnTop="true"
                 android:textColor="@color/dark_white"
                 android:textSize="18sp" />
         </LinearLayout>

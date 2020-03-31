@@ -13,6 +13,7 @@ import com.google.firebase.database.*
 import com.mazad.mazadangy.R
 import com.mazad.mazadangy.gui.PostDetails.PostDetailsActivity
 import com.mazad.mazadangy.model.AdsModel
+import com.mazad.mazadangy.model.UserModel
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import java.text.SimpleDateFormat
@@ -71,6 +72,7 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
+        var userModel: UserModel
         val adsModel: AdsModel = adsList.get(position)
         var uid = adsList[position].userId
 
@@ -93,11 +95,37 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
                 //  menu.clear()
                 // dataSnapshot.children.mapNotNullTo(menu) { it.getValue<user>(user::class.java) }
 
+//                var u: UserModel = dataSnapshot.getValue(UserModel::class.java)!!
+                var firstname = dataSnapshot.child("firstName").getValue(String::class.java)
+                var lastname = dataSnapshot.child("lastName").getValue(String::class.java)
+                var email = dataSnapshot.child("email").getValue(String::class.java)
+                var phonenumber = dataSnapshot.child("phoneNumber").getValue(String::class.java)
+                var interest = dataSnapshot.child("interest").getValue(String::class.java)
+                var nickname = dataSnapshot.child("nickname").getValue(String::class.java)
+                var uid = dataSnapshot.child("uId").getValue(String::class.java)
 
-                var  name = dataSnapshot.child("firstName").getValue(String::class.java)
-                holder.nameUserTv.text = "" + name
+                userModel = UserModel(
+                    uid!!,
+                    phonenumber!!,
+                    nickname!!,
+                    lastname!!,
+                    interest!!,
+                    firstname!!,
+                    email!!
+                )
+                holder.nameUserTv.text = "" + userModel.firstName
+                holder.itemView.setOnClickListener(object : View.OnClickListener {
+                    override fun onClick(v: View?) {
 
+                        val intent = Intent(context, PostDetailsActivity::class.java)
 
+                        intent.putExtra("adsModel", adsModel);
+                        intent.putExtra("userModel", userModel);
+
+                        context.startActivity(intent)
+
+                    }
+                })
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -107,18 +135,6 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
         databaseRefranceUser.child(uid.toString()).addListenerForSingleValueEvent(menuListener)
 
 
-
-
-        holder.itemView.setOnClickListener(object :View.OnClickListener{
-            override fun onClick(v: View?) {
-
-                val intent = Intent(context, PostDetailsActivity::class.java)
-
-                intent.putExtra("MyClass", adsModel);
-                context.startActivity(intent)
-
-            }
-        })
     }
 
 

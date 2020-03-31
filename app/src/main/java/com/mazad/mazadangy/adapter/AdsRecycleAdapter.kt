@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso
 class AdsRecycleAdapter() : RecyclerView.Adapter<AdsRecycleAdapter.VH>() {
     lateinit var adsList:ArrayList<UploadModel>
     lateinit var context:Context
-        constructor(context: Context, adsList: ArrayList<UploadModel>) : this() {
+    constructor(context: Context, adsList: ArrayList<UploadModel>) : this() {
         this.adsList=adsList
         this.context=context
     }

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackColor"
+    tools:context=".gui.EditProfile.EditProfileActivity">
+
+
+    <LinearLayout
+        android:id="@+id/layoutInformationEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:fontFamily="@font/description_font"
+            android:gravity="center"
+            android:text=" تعديل الحساب"
+            android:textColor="@color/dark_white"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <EditText
+                android:id="@+id/etLastNameEditProfileActivity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_weight="50"
+                android:background="@drawable/input_et"
+                android:fontFamily="@font/sub_title_font"
+                android:hint="الاسم الثاني"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="@color/dark_white"
+                android:textColorHint="@color/dark_white" />
+
+            <EditText
+                android:id="@+id/etFirstNameEditProfileActivity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_weight="50"
+                android:background="@drawable/input_et"
+                android:fontFamily="@font/sub_title_font"
+                android:hint="الاسم الأول"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:nextClusterForward="@id/lNameEt"
+                android:padding="10dp"
+                android:textColor="@color/dark_white"
+                android:textColorHint="@color/dark_white" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etNickNameEditProfileActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/input_et"
+            android:fontFamily="@font/sub_title_font"
+            android:hint="الأسم المستعار"
+            android:inputType="text"
+            android:maxLines="1"
+            android:nextFocusDown="@id/confirmPassTv"
+            android:padding="10dp"
+            android:textColor="@color/dark_white"
+            android:textColorHint="@color/dark_white" />
+
+        <EditText
+            android:id="@+id/etEmailEditProfileActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/input_et"
+            android:ems="10"
+            android:fontFamily="@font/sub_title_font"
+            android:hint="البريد الألكتروني"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:nextFocusDown="@id/passwordTv"
+            android:padding="10dp"
+            android:textColor="@color/dark_white"
+            android:textColorHint="@color/dark_white" />
+
+
+        <EditText
+            android:id="@+id/etPhoneNumberEditProfileActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/input_et"
+            android:fontFamily="@font/sub_title_font"
+            android:gravity="end"
+            android:hint="رقم الهاتف"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/dark_white"
+            android:textColorHint="@color/dark_white" />
+
+        <EditText
+            android:id="@+id/etInterestEditProfileActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/input_et"
+            android:fontFamily="@font/sub_title_font"
+            android:hint="مهتم ب"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/dark_white"
+            android:textColorHint="@color/dark_white" />
+
+        <TextView
+            android:id="@+id/textChangePasswordEditProfileActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:padding="10dp"
+            android:text="لتغير كلمه المرور "
+            android:textColor="@color/dark_white" />
+
+        <Button
+            android:id="@+id/btnSaveEditProfileActivity"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/btn_radius"
+            android:fontFamily="@font/description_font"
+            android:text="حفظ"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+</ScrollView>

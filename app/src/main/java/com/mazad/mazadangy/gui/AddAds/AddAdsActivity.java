@@ -88,6 +88,7 @@ public class AddAdsActivity extends AppCompatActivity {
                         mRef.child("end_time").setValue(end_time);
                         mRef.child("pand_num").setValue(pand_num);
                         mRef.child("start_price").setValue(start_price);
+                        mRef.child("end_price").setValue(start_price);
                         mRef.child("status_money").setValue(status_money);
                         mRef.child("stop_ad").setValue("false");
                         mRef.child("imge").child("1").setValue("false");
