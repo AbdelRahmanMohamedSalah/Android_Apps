@@ -92,6 +92,8 @@ public class AddAdsActivity extends AppCompatActivity {
                         mRef.child("status_money").setValue(status_money);
                         mRef.child("stop_ad").setValue("false");
                         mRef.child("imge").child("1").setValue("false");
+                        mRef.child("id_post").setValue(mRef.getKey().toString());
+
                         mRef.child("userId").setValue(currentFirebaseUser.getUid().toString());
                         //mRef.child("start_ad").setValue("false");
                         //mRef.child("day_num").setValue(day_num);

@@ -2,6 +2,7 @@ package com.mazad.mazadangy.gui.PostDetails;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,16 +14,27 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mazad.mazadangy.R;
 import com.mazad.mazadangy.gui.UserDetails.UserDetailsActivity;
 import com.mazad.mazadangy.model.AdsModel;
 import com.mazad.mazadangy.model.UserModel;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class PostDetailsActivity extends AppCompatActivity {
@@ -34,25 +46,40 @@ public class PostDetailsActivity extends AppCompatActivity {
     Button btn_saveOfferPostDetailsActivity;
     public static int final_price = 0;
     public static int counter = 0;
+    DatabaseReference DR_setDataAution, DR_setEndPrice, DR_user;
+    FirebaseUser firebaseAuth;
+    String aution_userId, aution_firstName;
+
 
     de.hdodenhof.circleimageview.CircleImageView user_image;
     LinearLayout layout_user, layout_dialog_makeOffer, layout_dialog_counter;
     //List<String> imageList;
     List<String> imageList;
     Dialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         this.getSupportActionBar().hide();
         setContentView(R.layout.activity_post_details);
+
         intilize();
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
+
         final AdsModel model = (AdsModel) bundle.getSerializable("adsModel");
         final UserModel userModel = (UserModel) bundle.getSerializable("userModel");
-        Toast.makeText(this, "Mode = " + model.desc_money, Toast.LENGTH_SHORT).show();
+
+
+        firebaseAuth = FirebaseAuth.getInstance().getCurrentUser();
+        aution_userId = firebaseAuth.getUid();
+
+        DR_setDataAution = FirebaseDatabase.getInstance().getReference("mony_post").child(model.id_post + "").child("auction").push();
+        DR_setEndPrice = FirebaseDatabase.getInstance().getReference("mony_post").child(model.id_post + "");
+        DR_user = FirebaseDatabase.getInstance().getReference("users").child(aution_userId + "");
+
 
         imageList = new ArrayList<String>(Collections.singleton(model.imge.get(1).toString()));
         Picasso.get().load(imageList.get(0)).into(image);
@@ -71,7 +98,20 @@ public class PostDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 dialog = new Dialog(PostDetailsActivity.this, android.R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar_MinWidth);
                 dialog.setContentView(R.layout.offers_post_details_activity);
+                DR_user.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                        //  user=dataSnapshot.getValue(UserModel.class);
+                        System.out.println("User details= " + dataSnapshot);
+                        aution_firstName = (dataSnapshot.child("firstName").getValue(String.class)) + (dataSnapshot.child("lastName").getValue(String.class));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
                 layout_dialog_counter = dialog.findViewById(R.id.layoutCounterOffersDetailsPostActivity);
                 layout_dialog_makeOffer = dialog.findViewById(R.id.layoutMakeOfferDetailsPostActivity);
                 tv_dialogOldPrice = dialog.findViewById(R.id.tvStartPriceOffersDetailsPostActivity);
@@ -183,14 +223,27 @@ public class PostDetailsActivity extends AppCompatActivity {
                     });
                 }
                 dialog.show();
+
+
                 btn_saveOfferPostDetailsActivity.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onClick(View v) {
-
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                        Date date = new Date();
                         if (final_price <= Integer.parseInt(model.getEnd_price().toString())) {
                             Toast.makeText(PostDetailsActivity.this, "الرقم اقل من المسموح ", Toast.LENGTH_SHORT).show();
                         } else {
+                            DR_setDataAution.child("end_price").setValue(final_price + "");
+                            DR_setDataAution.child("uId").setValue(aution_userId + "");
+                            DR_setDataAution.child("user_name").setValue(aution_firstName+"");
+                            DR_setDataAution.child("end_price").setValue(final_price + "");
+                            DR_setDataAution.child("time").setValue(formatter.format(date) + "");
+
+
+                            DR_setEndPrice.child("end_price").setValue(final_price + "");
                             Toast.makeText(PostDetailsActivity.this, "ok", Toast.LENGTH_SHORT).show();
+                            dialog.hide();
 
                         }
 

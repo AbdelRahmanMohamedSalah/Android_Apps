@@ -16,6 +16,7 @@
         <activity android:name=".gui.UserDetails.UserDetailsActivity" />
         <activity android:name=".gui.PostDetails.PostDetailsActivity" />
         <activity android:name=".gui.AddAds.AddAdsActivity" />
+
         <activity
             android:name=".gui.category.CategoryActivity"
             android:theme="@style/nobar">
