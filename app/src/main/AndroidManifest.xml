@@ -15,7 +15,7 @@
         <activity android:name=".gui.EditProfile.EditProfileActivity"></activity>
         <activity android:name=".gui.UserDetails.UserDetailsActivity" />
         <activity android:name=".gui.PostDetails.PostDetailsActivity" />
-        <activity android:name=".gui.AddAds.AddAdsActivity" />
+        <activity android:name=".gui.AddAds.AddAdsActivity" >   </activity>
 
         <activity
             android:name=".gui.category.CategoryActivity"
@@ -34,7 +34,11 @@
             android:theme="@style/nobar" />
         <activity
             android:name=".gui.login.LoginActivity"
-            android:theme="@style/nobar" />
+            android:theme="@style/nobar" >
+
+
+
+        </activity>
         <activity
             android:name=".gui.splash.SplashScrean"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />

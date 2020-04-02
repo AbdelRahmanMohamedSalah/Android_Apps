@@ -6,12 +6,14 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.mazad.mazadangy.R
 import com.mazad.mazadangy.gui.PostDetails.PostDetailsActivity
+import com.mazad.mazadangy.gui.UserDetails.UserDetailsActivity
 import com.mazad.mazadangy.model.AdsModel
 import com.mazad.mazadangy.model.UserModel
 import com.squareup.picasso.Picasso
@@ -43,19 +45,21 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
     class VH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nameUserTv: TextView
         var descTv: TextView
+        var endPriceTv: TextView
         var startPriceTv: TextView
         var countDownTimerTextView: TextView
         var imgeAdIv: ImageView
-        // var interMazadBtn: Button
+        var interMazadBtn: Button
         var imgeProfileCv: CircleImageView
 
         init {
             nameUserTv = itemView.findViewById(R.id.nameUserTv)
             descTv = itemView.findViewById(R.id.descTv)
             startPriceTv = itemView.findViewById(R.id.startPriceTv)
+            endPriceTv = itemView.findViewById(R.id.endPriceTv)
             countDownTimerTextView = itemView.findViewById(R.id.countDownTimerTextView)
             imgeAdIv = itemView.findViewById(R.id.imgeAdIv)
-            //interMazadBtn = itemView.findViewById(R.id.imgeAdIv)
+            interMazadBtn = itemView.findViewById(R.id.interMazadBtn)
             imgeProfileCv = itemView.findViewById(R.id.imgeProfileCv)
         }
 
@@ -81,6 +85,8 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
 
         var s: String = adsList[position].start_price
         holder.startPriceTv.text="السهر يبدأ من "+adsList[position].start_price
+        holder.endPriceTv.text="السهر الحالى "+adsList[position].end_price
+
         var st:String=adsList[position].end_ads
 
         printDifferenceDateForHours(adsList[position].end_ads,holder.countDownTimerTextView)
@@ -114,6 +120,27 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
                     email!!
                 )
                 holder.nameUserTv.text = "" + userModel.firstName
+
+                holder.imgeProfileCv.setOnClickListener(object : View.OnClickListener {
+                    override fun onClick(v: View?) {
+                        val intent = Intent(context, UserDetailsActivity::class.java)
+
+                        intent.putExtra("UserModelPostDetailsActivity", userModel);
+                        context.startActivity(intent)
+
+                    }
+                })
+
+//                holder.interMazadBtn.setOnClickListener(object : View.OnClickListener {
+//                    override fun onClick(v: View?) {
+//                        val intent = Intent(context, PostDetailsActivity::class.java)
+//
+//                        intent.putExtra("UserModelPostDetailsActivity", userModel);
+//                        context.startActivity(intent)
+//
+//                    }
+//                })
+
                 holder.itemView.setOnClickListener(object : View.OnClickListener {
                     override fun onClick(v: View?) {
 
@@ -174,7 +201,7 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
             }
 
             override fun onFinish() {
-//                dateTv.text = "Saled!"
+                dateTv.text = "Saled!"
             }
         }.start()
     }

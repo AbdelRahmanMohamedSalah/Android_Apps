@@ -66,55 +66,59 @@ public class AddAdsActivity extends AppCompatActivity {
         rgChoise();
         setDate();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
         mRef = mDatabase.child("mony_post").push();
         currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentFirebaseUser == null) {
+            Toast.makeText(this, "برجاء تسجيل الدخول للتمكن من نشر اعلانات", Toast.LENGTH_SHORT).show();
 
-        addPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pand_num = etPandNum.getText().toString();
-                desc_money = etDesc.getText().toString();
-                start_price = etStartPrice.getText().toString();
+        } else {
+            addPost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    pand_num = etPandNum.getText().toString();
+                    desc_money = etDesc.getText().toString();
+                    start_price = etStartPrice.getText().toString();
 
 
-                if (!(etPandNum.getText().toString().isEmpty() || etDesc.getText().toString().isEmpty() || etDesc.getText().toString().isEmpty())) {
-                    if (!(back_sale.equals("0") || day_num.equals("0") || end_time.equals("0") || end_ads.equals("0"))) {
-                        Toast.makeText(AddAdsActivity.this, "Ok", Toast.LENGTH_SHORT).show();
+                    if (!(etPandNum.getText().toString().isEmpty() || etDesc.getText().toString().isEmpty() || etDesc.getText().toString().isEmpty())) {
+                        if (!(back_sale.equals("0") || day_num.equals("0") || end_time.equals("0") || end_ads.equals("0"))) {
+                            Toast.makeText(AddAdsActivity.this, "Ok", Toast.LENGTH_SHORT).show();
 
-                        mRef.child("back_sale").setValue(back_sale);
-                        mRef.child("count_price").setValue(addmoneyNumber + "");
-                        mRef.child("desc_money").setValue(desc_money);
-                        mRef.child("end_ads").setValue(end_ads);
-                        mRef.child("end_time").setValue(end_time);
-                        mRef.child("pand_num").setValue(pand_num);
-                        mRef.child("start_price").setValue(start_price);
-                        mRef.child("end_price").setValue(start_price);
-                        mRef.child("status_money").setValue(status_money);
-                        mRef.child("stop_ad").setValue("false");
-                        mRef.child("imge").child("1").setValue("false");
-                        mRef.child("id_post").setValue(mRef.getKey().toString());
+                            mRef.child("back_sale").setValue(back_sale);
+                            mRef.child("count_price").setValue(addmoneyNumber + "");
+                            mRef.child("desc_money").setValue(desc_money);
+                            mRef.child("end_ads").setValue(end_ads);
+                            mRef.child("end_time").setValue(end_time);
+                            mRef.child("pand_num").setValue(pand_num);
+                            mRef.child("start_price").setValue(start_price);
+                            mRef.child("end_price").setValue(start_price);
+                            mRef.child("status_money").setValue(status_money);
+                            mRef.child("stop_ad").setValue("false");
+                            mRef.child("imge").child("1").setValue("false");
+                            mRef.child("id_post").setValue(mRef.getKey().toString());
 
-                        mRef.child("userId").setValue(currentFirebaseUser.getUid().toString());
-                        //mRef.child("start_ad").setValue("false");
-                        //mRef.child("day_num").setValue(day_num);
-                        Intent intent = new Intent(AddAdsActivity.this, CategoryActivity.class);
-                        startActivity(intent);
-                        finish();
-                        Toast.makeText(AddAdsActivity.this, pand_num + "" + desc_money + "" + start_price + "" + back_sale + "" + day_num + "" + start_ads + "" + end_ads + "" + end_time + "" + status_money, Toast.LENGTH_LONG).show();
+                            mRef.child("userId").setValue(currentFirebaseUser.getUid().toString());
+                            //mRef.child("start_ad").setValue("false");
+                            //mRef.child("day_num").setValue(day_num);
+                            Intent intent = new Intent(AddAdsActivity.this, CategoryActivity.class);
+                            startActivity(intent);
+                            finish();
+                            Toast.makeText(AddAdsActivity.this, pand_num + "" + desc_money + "" + start_price + "" + back_sale + "" + day_num + "" + start_ads + "" + end_ads + "" + end_time + "" + status_money, Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(AddAdsActivity.this, "برجاء اختيار جميع العناصر", Toast.LENGTH_SHORT).show();
+                        }
                     } else {
-                        Toast.makeText(AddAdsActivity.this, "برجاء اختيار جميع العناصر", Toast.LENGTH_SHORT).show();
+
+
+                        Toast.makeText(AddAdsActivity.this, "برجاء ادخال جميع البيانات", Toast.LENGTH_SHORT).show();
+
+
                     }
-                } else {
-
-
-                    Toast.makeText(AddAdsActivity.this, "برجاء ادخال جميع البيانات", Toast.LENGTH_SHORT).show();
-
-
                 }
-            }
 
-        });
-
+            });
+        }
 
         adsImage.setOnClickListener(new View.OnClickListener() {
             @Override
