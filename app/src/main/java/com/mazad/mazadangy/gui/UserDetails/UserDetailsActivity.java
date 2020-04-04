@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mazad.mazadangy.R;
 import com.mazad.mazadangy.gui.EditProfile.EditProfileActivity;
 import com.mazad.mazadangy.model.UserModel;
+import com.squareup.picasso.Picasso;
 
 public class UserDetailsActivity extends AppCompatActivity {
     Button btnEditData;
@@ -48,6 +49,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         tv_phone.setText(userModel.phoneNumber);
         tv_interest.setText(userModel.interest);
         tv_nickName.setText(userModel.nickname);
+        Picasso.get().load(userModel.image_profile).into(profile_Image);
         tv_userName.setText(userModel.firstName + " " + userModel.lastName);
         btnEditData.setOnClickListener(new View.OnClickListener() {
             @Override

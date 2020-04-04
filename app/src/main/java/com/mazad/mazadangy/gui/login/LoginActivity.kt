@@ -1,15 +1,13 @@
 package com.mazad.mazadangy.gui.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.mazad.mazadangy.R
 import com.mazad.mazadangy.gui.category.CategoryActivity
-import com.mazad.mazadangy.gui.home.HomeActivity
 import com.mazad.mazadangy.gui.signup.SignUpActivity
-import com.mazad.mazadangy.gui.signup.SignUpInterface
-import com.mazad.mazadangy.gui.signup.SignUpPresenter
 import com.mazad.mazadangy.utels.ToastUtel
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -21,7 +19,13 @@ class LoginActivity : AppCompatActivity(), LoginInterface {
         loginPresenter= LoginPresenter(this)
         listenerView()
 
+        val user = FirebaseAuth.getInstance().getCurrentUser()
+        if (user != null) {
+            startActivity(Intent(this@LoginActivity,CategoryActivity::class.java))
+            finish()
+        }
     }
+
 
     private fun listenerView() {
         newAccTv.setOnClickListener(object :View.OnClickListener{

@@ -3,6 +3,7 @@
     package="com.mazad.mazadangy">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,20 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".gui.EditProfile.EditProfileActivity"></activity>
+        <activity android:name=".gui.favorite.FavoritePostActivity"></activity>
+        <activity android:name=".gui.AddAds.AddPostActivity" />
+        <activity android:name=".gui.EditProfile.EditProfileActivity" />
         <activity android:name=".gui.UserDetails.UserDetailsActivity" />
         <activity android:name=".gui.PostDetails.PostDetailsActivity" />
-        <activity android:name=".gui.AddAds.AddAdsActivity" >   </activity>
-
+        <activity android:name=".gui.AddAds.AddAdsActivity" />
         <activity
             android:name=".gui.category.CategoryActivity"
-            android:theme="@style/nobar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/nobar" />
         <activity
             android:name=".gui.home.HomeActivity"
             android:theme="@style/nobar" />
@@ -34,10 +30,12 @@
             android:theme="@style/nobar" />
         <activity
             android:name=".gui.login.LoginActivity"
-            android:theme="@style/nobar" >
+            android:theme="@style/nobar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".gui.splash.SplashScrean"

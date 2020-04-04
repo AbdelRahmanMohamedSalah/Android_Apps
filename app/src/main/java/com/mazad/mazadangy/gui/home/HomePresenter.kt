@@ -26,7 +26,6 @@ class HomePresenter {
 
                         var adsModel: AdsModel? = data.getValue(AdsModel::class.java)
                         listAds.add(adsModel!!)
-
                     }
                     homeInterface.sucuss(listAds)
 

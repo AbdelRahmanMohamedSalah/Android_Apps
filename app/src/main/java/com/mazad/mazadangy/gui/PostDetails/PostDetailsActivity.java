@@ -42,18 +42,19 @@ import java.util.List;
 
 public class PostDetailsActivity extends AppCompatActivity {
     TextView tv_title, tv_desc, tv_backSale, tv_startPrice, tv_EndPrice, tv_endTime, tv_pandNum, tv_username, tv_enter_comp, tv_follow_comp;
-    ImageView image;
+    ImageView image, image_favoriteOn, image_favoriteOff, image_back;
     TextView tv_dialogOldPrice, tv_dialogLivePrice, tv_dialognewPrice, tv_counterPrice;
     EditText et_dialogOffer;
     ImageView iv_dialog_add, iv_dialog_remove;
     Button btn_saveOfferPostDetailsActivity;
     public static int final_price = 0;
     public static int counter = 0;
-    DatabaseReference DR_setDataAution, DR_setEndPrice, DR_user;
+    DatabaseReference DR_setDataAution, DR_setEndPrice, DR_user,DR_favorite;
     FirebaseUser firebaseAuth;
-    String aution_userId, aution_firstName;
+    String aution_userId, aution_firstName, aution_image;
     AdsModel adsModel;
     UserModel userModel;
+    String fromActivity;
     de.hdodenhof.circleimageview.CircleImageView user_image;
     LinearLayout layout_user, layout_dialog_makeOffer, layout_dialog_counter;
     //List<String> imageList;
@@ -79,26 +80,25 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         adsModel = (AdsModel) bundle.getSerializable("adsModel");
         userModel = (UserModel) bundle.getSerializable("userModel");
-
-        //action = new Auction("ahmed", "rfe34534", "12:34", "100");
-//        System.out.println("Auction = " + action.getEnd_price().toString() + action.getUser_name().toString());
-
+        fromActivity = intent.getStringExtra("fromActivity");
         arrayAuction = new ArrayList<>();
         action = new Auction();
-        // arrayAuction.add(action);
+        firebaseAuth = FirebaseAuth.getInstance().getCurrentUser();
 
-//        arrayAuction.add(new Auction("AbdelRahman", "eew56876wf", "10:22Pm", "2000"));
-//        arrayAuction.add(new Auction("AbdelRahman", "eew56876wf", "10:22Pm", "2000"));
-//        arrayAuction.add(new Auction("AbdelRahman", "eew56876wf", "10:22Pm", "2000"));
-//        arrayAuction.add(new Auction("AbdelRahman", "eew56876wf", "10:22Pm", "2000"));
-
-//        System.out.println("array 2 = "+action.getUser_name());
-//        System.out.println("Array 1  = "+arrayAuction.toString());
+        if (fromActivity.equals("posts")) {
+            DR_setDataAution = FirebaseDatabase.getInstance().getReference("posts").child(adsModel.id_post + "").child("auction").push();
+            DR_setEndPrice = FirebaseDatabase.getInstance().getReference("posts").child(adsModel.id_post + "");
+            DR_favorite=FirebaseDatabase.getInstance().getReference("favorite").child(firebaseAuth.getUid().toString()).child("posts");
 
 
-        DR_setDataAution = FirebaseDatabase.getInstance().getReference("mony_post").child(adsModel.id_post + "").child("auction").push();
-        DR_setEndPrice = FirebaseDatabase.getInstance().getReference("mony_post").child(adsModel.id_post + "");
+        } else {
 
+            DR_setDataAution = FirebaseDatabase.getInstance().getReference("mony_post").child(adsModel.id_post + "").child("auction").push();
+            DR_setEndPrice = FirebaseDatabase.getInstance().getReference("mony_post").child(adsModel.id_post + "");
+            DR_favorite=FirebaseDatabase.getInstance().getReference("favorite").child(firebaseAuth.getUid().toString()).child("mony_post");
+
+
+        }
 
         DR_setEndPrice.child("auction").addValueEventListener(new ValueEventListener() {
             @Override
@@ -108,7 +108,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                     action = dataSnapshot1.getValue(Auction.class);
 
                     arrayAuction.add(action);
-                   // auctionAdapter.notifyDataSetChanged();
+                    // auctionAdapter.notifyDataSetChanged();
                 }
 
             }
@@ -134,7 +134,37 @@ public class PostDetailsActivity extends AppCompatActivity {
         });
         dialogEnterAuction();
         dialogFollowAuction();
+
+        image_favoriteOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                image_favoriteOff.setVisibility(View.GONE);
+                image_favoriteOn.setVisibility(View.VISIBLE);
+
+                DR_favorite.child(adsModel.id_post+"").setValue(adsModel);
+
+            }
+        });
+
+
+        image_favoriteOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                image_favoriteOn.setVisibility(View.GONE);
+                image_favoriteOff.setVisibility(View.VISIBLE);
+            }
+        });
+        image_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
     }
+
+
+
 
     public void dialogEnterAuction() {
 
@@ -142,7 +172,6 @@ public class PostDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                firebaseAuth = FirebaseAuth.getInstance().getCurrentUser();
                 if (firebaseAuth == null) {
 
                     Toast.makeText(PostDetailsActivity.this, "برجاء تسجيل الدخول لدخول المزاد", Toast.LENGTH_SHORT).show();
@@ -150,7 +179,6 @@ public class PostDetailsActivity extends AppCompatActivity {
                     aution_userId = firebaseAuth.getUid();
 
                     DR_user = FirebaseDatabase.getInstance().getReference("users").child(aution_userId + "");
-
                     dialogEnterCom = new Dialog(PostDetailsActivity.this, android.R.style.Theme_DeviceDefault_Light_Dialog_NoActionBar_MinWidth);
                     dialogEnterCom.setContentView(R.layout.offers_post_details_activity);
                     DR_user.addValueEventListener(new ValueEventListener() {
@@ -159,7 +187,14 @@ public class PostDetailsActivity extends AppCompatActivity {
 
                             //  user=dataSnapshot.getValue(UserModel.class);
                             System.out.println("User details= " + dataSnapshot);
-                            aution_firstName = (dataSnapshot.child("firstName").getValue(String.class)) + (dataSnapshot.child("lastName").getValue(String.class));
+                            aution_firstName = (dataSnapshot.child("firstName").getValue(String.class)) + " " + (dataSnapshot.child("lastName").getValue(String.class));
+                            aution_image = (dataSnapshot.child("image_profile").getValue(String.class));
+                            System.out.println("datasnapshot  = " + dataSnapshot);
+
+                            System.out.println("User Name  = " + aution_firstName);
+                            System.out.println("Data snap shot = " + dataSnapshot.child("firstName").getValue(String.class));
+                            System.out.println("Data  uid  = " + dataSnapshot.child("uId").getValue(String.class));
+
                         }
 
                         @Override
@@ -293,6 +328,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                                 DR_setDataAution.child("end_price").setValue(final_price + "");
                                 DR_setDataAution.child("uId").setValue(aution_userId + "");
                                 DR_setDataAution.child("user_name").setValue(aution_firstName + "");
+                                DR_setDataAution.child("user_image").setValue(aution_image + "");
                                 DR_setDataAution.child("end_price").setValue(final_price + "");
                                 DR_setDataAution.child("time").setValue(formatter.format(date) + "");
 
@@ -352,6 +388,9 @@ public class PostDetailsActivity extends AppCompatActivity {
         tv_enter_comp = findViewById(R.id.tvEnterCompDetailsPostActivity);
         tv_follow_comp = findViewById(R.id.tvFollowCompDetailsPostActivity);
         tv_EndPrice = findViewById(R.id.tvEndPriceDetailsPostActivity);
+        image_favoriteOn = findViewById(R.id.imageFavoriteOnPostDetailsACtivity);
+        image_favoriteOff = findViewById(R.id.imageFavoriteOffPostDetailsACtivity);
+        image_back = findViewById(R.id.imageBackPostDetailsActivity);
     }
 
     public void setValue(AdsModel adsModel, UserModel userModel) {
@@ -363,7 +402,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         tv_endTime.setText(adsModel.end_time);
         tv_pandNum.setText(adsModel.pand_num);
         tv_username.setText(userModel.firstName);
-
+        Picasso.get().load(userModel.image_profile).into(user_image);
 
     }
 

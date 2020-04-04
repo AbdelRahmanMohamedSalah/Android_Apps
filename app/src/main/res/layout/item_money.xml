@@ -30,10 +30,10 @@ app:cardCornerRadius="10dp">
                 android:id="@+id/imgeProfileCv"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp"
+                app:civ_border_color="#D50101"
+                app:civ_border_width="1.4dp"
                 tool:src="@drawable/point" />
-
+<!--            FF000000-->
             <TextView
                 android:id="@+id/nameUserTv"
                 android:layout_width="wrap_content"

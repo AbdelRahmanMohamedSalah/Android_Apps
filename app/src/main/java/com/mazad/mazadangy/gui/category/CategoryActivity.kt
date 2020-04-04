@@ -32,7 +32,7 @@ class CategoryActivity : AppCompatActivity() {
         otherCard.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
                 var intentother:Intent=(Intent(this@CategoryActivity,HomeActivity::class.java))
-                intentother.putExtra("category","other")
+                intentother.putExtra("category","posts")
                 startActivity(intentother)
 
             }

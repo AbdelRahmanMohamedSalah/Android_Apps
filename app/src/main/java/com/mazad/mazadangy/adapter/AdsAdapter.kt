@@ -18,6 +18,7 @@ import com.mazad.mazadangy.model.AdsModel
 import com.mazad.mazadangy.model.UserModel
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,14 +29,18 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
     lateinit var database: FirebaseDatabase
     lateinit var databaseRefrance: DatabaseReference
     lateinit var databaseRefranceUser: DatabaseReference
+    lateinit var UID: String
+    lateinit var fromActivity: String
 
-
+    lateinit var EndTimeDetails: String
     private lateinit var countDownTimer: CountDownTimer
 
 
-    constructor(context: Context, adsList: ArrayList<AdsModel>) : this() {
+    constructor(context: Context, adsList: ArrayList<AdsModel>, fromActivity: String) : this() {
         this.adsList = adsList
         this.context = context
+        this.fromActivity = fromActivity
+
         database = FirebaseDatabase.getInstance()
         databaseRefrance = database.getReference("mony_post")
         databaseRefranceUser = database.getReference("users")
@@ -51,6 +56,7 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
         var imgeAdIv: ImageView
         var interMazadBtn: Button
         var imgeProfileCv: CircleImageView
+
 
         init {
             nameUserTv = itemView.findViewById(R.id.nameUserTv)
@@ -88,12 +94,12 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
         holder.endPriceTv.text="السهر الحالى "+adsList[position].end_price
 
         var st:String=adsList[position].end_ads
-
+        UID = adsList[position].id_post
+        EndTimeDetails = adsList[position].end_time
         printDifferenceDateForHours(adsList[position].end_ads,holder.countDownTimerTextView)
        // holder.nameUserTv.text = "" + name
         var imgeList: List<String> =adsList[position].imge
         Picasso.get().load(imgeList[1]).into(holder.imgeAdIv)
-        Picasso.get().load(R.drawable.profile_ph).into(holder.imgeProfileCv)
 
         val menuListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -109,6 +115,8 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
                 var interest = dataSnapshot.child("interest").getValue(String::class.java)
                 var nickname = dataSnapshot.child("nickname").getValue(String::class.java)
                 var uid = dataSnapshot.child("uId").getValue(String::class.java)
+                var image_profile = dataSnapshot.child("image_profile").getValue(String::class.java)
+
 
                 userModel = UserModel(
                     uid!!,
@@ -117,9 +125,11 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
                     lastname!!,
                     interest!!,
                     firstname!!,
-                    email!!
+                    email!!,
+                    image_profile!!
                 )
                 holder.nameUserTv.text = "" + userModel.firstName
+                Picasso.get().load(userModel.image_profile).into(holder.imgeProfileCv)
 
                 holder.imgeProfileCv.setOnClickListener(object : View.OnClickListener {
                     override fun onClick(v: View?) {
@@ -148,6 +158,8 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
 
                         intent.putExtra("adsModel", adsModel);
                         intent.putExtra("userModel", userModel);
+                        intent.putExtra("fromActivity", fromActivity);
+
 
                         context.startActivity(intent)
 
@@ -167,6 +179,80 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
 
 
     fun printDifferenceDateForHours(endDateDay:String,dateTv:TextView) {
+
+        if (EndTimeDetails.equals("العاشرة مساء")) {
+            System.out.println("End Time Data =  10:00" + EndTimeDetails)
+
+        } else {
+
+            System.out.println("End Time Data =  12:00" + EndTimeDetails)
+
+        }
+
+        val date_s = "2017-03-08 13:27:00"
+
+        // *** note that it's "yyyy-MM-dd hh:mm:ss" not "yyyy-mm-dd hh:mm:ss"
+        // *** note that it's "yyyy-MM-dd hh:mm:ss" not "yyyy-mm-dd hh:mm:ss"
+//        val dt = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+//        val date = dt.parse(date_s)
+//
+//        // *** same for the format String below
+//        // *** same for the format String below
+//        var dt1 = SimpleDateFormat("yyyy-MM-dd")
+//        println("Date :" + dt1.format(date))
+//
+//        dt1 = SimpleDateFormat("HH:mm:ss")
+//        println("Time :" + dt1.format(date))
+//
+//        val timeSpent = ("" + dt1)
+//        val seperatedTime = timeSpent.split(":").toTypedArray()
+////        val hours = seperatedTime[0].toInt()
+//        val minutes = seperatedTime[1].toInt()
+//        val seconds = seperatedTime[2].toInt()
+////        val duration = 3600 * hours + 60 * minutes + seconds
+//
+//        println("end date Day" + endDateDay);
+////        println("Hours= "+hours);
+//        val df = SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
+//
+//        val d = df.parse(endDateDay)
+//
+//        val hours = d.hours
+//        println("Hours = " + hours.toString())
+
+        if (EndTimeDetails.equals("العاشرة مساء")) {
+            System.out.println("End Time Data =  10:00" + EndTimeDetails)
+
+        } else {
+
+            System.out.println("End Time Data =  12:00" + EndTimeDetails)
+
+        }
+
+        ///////////////////////////////////
+        var copy: String
+        copy = endDateDay.toString();
+        // val dtStart = "2010-10-15T09:27:37Z"
+        val format =
+            SimpleDateFormat("dd/MM/yyyy hh:mm:ss")
+        try {
+            val date = format.parse(copy)
+            System.out.println("date now = " + date)
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+
+
+//        endDateDay = Calendar.getInstance()
+//        endDateDay[Calendar.HOUR_OF_DAY] = 10
+//        val date = cal.time
+
+
+
+
+
+
+
 
         val currentTime = Calendar.getInstance().time
 //        val endDateDay = "19/03/2020 21:00:00"
@@ -202,6 +288,10 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
 
             override fun onFinish() {
                 dateTv.text = "Saled!"
+                System.out.println("UID = " + UID);
+                //databaseRefrance.child(UID + "").removeValue();
+//                context.finish();
+//                context.startActivity(getIntent());
             }
         }.start()
     }

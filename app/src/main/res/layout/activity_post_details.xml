@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".gui.PostDetails.PostDetailsActivity">
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,165 +22,214 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imagePostDetailsPostActivity"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:src="@drawable/coin" />
+                    android:layout_height="270dp"
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:id="@+id/imagePostDetailsPostActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/coin" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_margin="16dp"
+                        android:orientation="horizontal">
+
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+
+                            android:layout_weight="1">
+
+                            <ImageView
+
+                                android:id="@+id/imageFavoriteOffPostDetailsACtivity"
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:src="@drawable/ic_star_border_black_24dp" />
+
+                            <ImageView
+
+                                android:id="@+id/imageFavoriteOnPostDetailsACtivity"
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:src="@drawable/ic_star_red_24dp"
+                                android:visibility="gone" />
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:id="@+id/imageBackPostDetailsActivity"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_gravity="right"
+                            android:layout_marginRight="16dp"
+                            android:src="@drawable/ic_arrow_forward_black_24dp" />
+
+                    </LinearLayout>
+                </RelativeLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="@color/blackColor" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginRight="6dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
 
-                <TextView
-                    android:id="@+id/tvpandNumDetailsPostActivity"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="101"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="6dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
 
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@color/dark_white" />
+                    <TextView
+                        android:id="@+id/tvpandNumDetailsPostActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="101"
+                        android:textSize="20sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="بند رقم :"
-                    android:textSize="20sp" />
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:background="@color/dark_white" />
 
-
-            </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@color/blackColor" />
-            <LinearLayout
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginRight="6dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <TextView
-                    android:id="@+id/tvBackSaleDetailsPostActivity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="بدون رجوع"
-                    android:textSize="20sp" />
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@color/dark_white" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="استرجاع العمله :"
-                    android:textSize="20sp" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="بند رقم :"
+                        android:textSize="20sp" />
 
 
-            </LinearLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="@color/blackColor" />
-            <LinearLayout
-                android:layout_width="match_parent"
 
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginRight="6dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <TextView
-                    android:id="@+id/tvEndTimeDetailsPostActivity"
+                <LinearLayout
                     android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="في منتصف الليل"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="6dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
 
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@color/dark_white" />
+                    <TextView
+                        android:id="@+id/tvBackSaleDetailsPostActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="بدون رجوع"
+                        android:textSize="20sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="نهايه الاعلان :"
-                    android:textSize="20sp" />
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:background="@color/dark_white" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="استرجاع الاعلان :"
+                        android:textSize="20sp" />
 
 
-            </LinearLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
                     android:background="@color/blackColor" />
-            <LinearLayout
-                android:layout_width="match_parent"
 
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginRight="6dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <TextView
-                    android:id="@+id/tvStartPriceDetailsPostActivity"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="39dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1500 EGP"
-                    android:textSize="20sp" />
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="6dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:id="@+id/tvEndTimeDetailsPostActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="في منتصف الليل"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:background="@color/dark_white" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="نهايه الاعلان :"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
 
                 <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@color/dark_white" />
-
-                <TextView
                     android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/blackColor" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="السعر الاولى :"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="6dp"
+                    android:orientation="horizontal"
+                    android:padding="6dp">
+
+                    <TextView
+                        android:id="@+id/tvStartPriceDetailsPostActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="39dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="1500 EGP"
+                        android:textSize="20sp" />
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:background="@color/dark_white" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="السعر الاولى :"
+                        android:textSize="20sp" />
 
 
-            </LinearLayout>
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -226,30 +276,30 @@
                     android:background="@color/blackColor" />
 
                 <LinearLayout
-                android:layout_marginTop="0dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="6dp"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="وصف العمله :"
-                    android:textSize="20sp" />
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="وصف الاعلان :"
+                        android:textSize="20sp" />
 
 
-                <TextView
-                    android:id="@+id/tvDescDetailsPostActivity"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text=" للبيع 20 جنيه استرلينى ترجع لعام 1970 ..الورقه حالتها كالجديده ليس بها اى قطع بدايه السعر لدخول المزاد 15000 EGP"
-                    android:textSize="20sp" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvDescDetailsPostActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text=" للبيع 20 جنيه استرلينى ترجع لعام 1970 ..الورقه حالتها كالجديده ليس بها اى قطع بدايه السعر لدخول المزاد 15000 EGP"
+                        android:textSize="20sp" />
+                </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -262,8 +312,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="دخول المزاد"
-                    android:textStyle="bold"
-                    android:textSize="22sp" />
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
@@ -278,37 +328,40 @@
                     android:text="متابعه المزاد"
                     android:textSize="22sp"
                     android:textStyle="bold" />
-            <LinearLayout
-                android:id="@+id/layoutUserDetailsPostActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/input_et_ads"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:layout_marginBottom="10dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgeProfileCvPostDetailsActivity"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/input_et_ads"
-                    android:src="@drawable/car" />
-
-                <TextView
-                    android:id="@+id/nameUserTvPostDetailsActivity"
+                <LinearLayout
+                    android:id="@+id/layoutUserDetailsPostActivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:fontFamily="@font/sub_title_font"
-                    android:text="Karim Ahmed"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/input_et_ads"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
-                    />
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgeProfileCvPostDetailsActivity"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/input_et_ads"
+                        android:src="@drawable/car" />
+
+                    <TextView
+                        android:id="@+id/nameUserTvPostDetailsActivity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:fontFamily="@font/sub_title_font"
+                        android:text="Karim Ahmed"
+
+                        />
+
+                </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
 </ScrollView>

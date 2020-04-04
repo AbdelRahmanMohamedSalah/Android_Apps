@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackColor"
+    tools:context=".gui.AddAds.AddPostActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/description_font"
+            android:gravity="center"
+            android:text="اضافه اعلان"
+            android:textColor="@color/dark_white"
+            android:textSize="28sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/dark_white" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/description_font"
+            android:gravity="center"
+            android:text="اضافه صورة للاعلان"
+            android:textColor="@color/dark_white" />
+
+        <ImageView
+            android:id="@+id/imageAddAdsActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/input_et_ads"
+            android:scaleType="centerInside"
+            android:src="@drawable/add_icon_grey_192x192" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgePickRV"
+            android:visibility="visible"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/list_item_singl"/>
+
+        <EditText
+            android:id="@+id/etPandNumAddAdsActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/input_et_ads"
+            android:fontFamily="@font/sub_title_font"
+            android:hint="بند رقم "
+            android:inputType="number"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/dark_white"
+            android:textColorHint="@color/dark_white" />
+
+        <EditText
+            android:id="@+id/etDescAddAdsActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/input_et_ads"
+            android:fontFamily="@font/sub_title_font"
+            android:hint="التوصيف"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/dark_white"
+            android:textColorHint="@color/dark_white" />
+
+        <EditText
+            android:id="@+id/etStartPriceAddAdsActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/input_et_ads"
+            android:fontFamily="@font/sub_title_font"
+            android:hint="السعر"
+            android:inputType="number"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:textColor="@color/dark_white"
+            android:textColorHint="@color/dark_white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/input_et_ads"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <RadioGroup
+                android:id="@+id/rgBackSaleAddAdsActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rbYesBackSaleActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/dark_white"
+                    android:text="نعم"
+                    android:textColor="@color/dark_white" />
+                <!--                <View-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="1px"-->
+                <!--                    android:background="@color/dark_white"/>-->
+
+                <RadioButton
+                    android:id="@+id/rbNoBackSaleActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/dark_white"
+                    android:text="لا"
+                    android:textColor="@color/dark_white" />
+
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="18dp"
+                android:background="@color/dark_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/sub_title_font"
+                android:gravity="right|center"
+                android:text="يحق الرجوع :"
+                android:textColor="@color/dark_white" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/input_et_ads"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <RadioGroup
+                android:id="@+id/rgAdsLengthAddAdsActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rbOneDayAdsLengthAddAdsActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/dark_white"
+                    android:text="يوم واحد"
+                    android:textColor="@color/dark_white" />
+                <!--                                <View-->
+                <!--                                    android:layout_width="match_parent"-->
+                <!--                                    android:layout_height="1px"-->
+                <!--                                    android:background="@color/dark_white"/>-->
+
+                <RadioButton
+                    android:id="@+id/rbMoreDaysAdsLengthAddAdsActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/dark_white"
+                    android:text="اكثر من يوم"
+                    android:textColor="@color/dark_white" />
+
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="18dp"
+                android:background="@color/dark_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/sub_title_font"
+                android:gravity="right|center"
+                android:text="مده الاعلان :"
+                android:textColor="@color/dark_white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/input_et_ads"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvStartDateAddAdsActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_calender_24dp"
+                    android:gravity="right|center"
+                    android:text="اختار تاريخ"
+                    android:textColor="@color/dark_white" />
+                <!--                                <View-->
+                <!--                                    android:layout_width="match_parent"-->
+                <!--                                    android:layout_height="1px"-->
+                <!--                                    android:background="@color/dark_white"/>-->
+
+                <TextView
+                    android:id="@+id/tvEndDateAddAdsActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_weight="1"
+                    android:drawableStart="@drawable/ic_calender_24dp"
+                    android:gravity="right|center"
+                    android:text="اختار تاريخ"
+                    android:textColor="@color/dark_white" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="18dp"
+                android:background="@color/dark_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/sub_title_font"
+                android:gravity="right|center"
+                android:text="تاريخ الاعلان :"
+                android:textColor="@color/dark_white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/input_et_ads"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <RadioGroup
+                android:id="@+id/rgAdsTimeAddAdsActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rbTenAdsTimeAddAdsActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/dark_white"
+                    android:text="العاشرة مساْءْ"
+                    android:textColor="@color/dark_white" />
+                <!--                                <View-->
+                <!--                                    android:layout_width="match_parent"-->
+                <!--                                    android:layout_height="1px"-->
+                <!--                                    android:background="@color/dark_white"/>-->
+
+                <RadioButton
+                    android:id="@+id/rbTwelveAdsTimeAddAdsActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/dark_white"
+                    android:text="منتصف الليل"
+                    android:textColor="@color/dark_white" />
+
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="18dp"
+                android:background="@color/dark_white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/sub_title_font"
+                android:gravity="right|center"
+                android:text="ينتهى فى :"
+                android:textColor="@color/dark_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/input_et_ads"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <CheckBox
+                android:id="@+id/checkBoxMoneyAddAdsActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="8dp"
+                android:buttonTint="@color/dark_white"
+                android:gravity="right"
+                android:text="رافعه"
+                android:textColor="@color/dark_white"
+                android:textSize="18sp" />
+            <!--<View-->
+            <!--    android:layout_width="match_parent"-->
+            <!--    android:layout_height="1px"-->
+            <!--    android:background="@color/dark_white"-->
+            <!--    />-->
+            <LinearLayout
+                android:id="@+id/layoutAddMoneyAddAdsActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/buttonRemoveMoneyAddAdsActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".5"
+                    android:src="@drawable/ic_remove_black_24dp" />
+
+                <TextView
+                    android:id="@+id/TvMoneyAddAdsActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/input_et_ads"
+                    android:gravity="center"
+                    android:text="50"
+                    android:textColor="@color/dark_white" />
+
+                <ImageView
+
+                    android:id="@+id/buttonAddMoneyAddAdsActivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".5"
+                    android:src="@drawable/ic_add_black_24dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/input_et_ads"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <Spinner
+
+                android:id="@+id/spinnerStateAddAdsActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="8dp"
+                android:backgroundTint="@color/dark_white"
+                android:drawSelectorOnTop="true"
+                android:foregroundTint="@color/dark_white"
+                android:gravity="right"
+                android:text="الحاله"
+                android:textColor="@color/dark_white"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/addBtnAddAdsActivity"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/btn_radius"
+            android:fontFamily="@font/description_font"
+            android:text="اضافه"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+</ScrollView>

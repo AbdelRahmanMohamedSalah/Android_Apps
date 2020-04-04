@@ -1,5 +1,4 @@
 package com.mazad.mazadangy.model
-
 import java.io.Serializable
 
 class UserModel : Serializable {
@@ -10,6 +9,8 @@ class UserModel : Serializable {
     lateinit var interest: String
     lateinit var firstName: String
     lateinit var email: String
+    lateinit var image_profile: String
+
     // lateinit var categories:String
     lateinit var categories: List<String>
 
@@ -20,7 +21,8 @@ class UserModel : Serializable {
         lastname: String,
         interest:String,
         firstname: String,
-        email: String
+        email: String,
+        image_profile:String
     ){
         this.uId=uId
         this.phoneNumber=phoneNumber
@@ -29,6 +31,7 @@ class UserModel : Serializable {
         this.interest=interest
         this.firstName=firstname
         this.email=email
+        this.image_profile=image_profile
 
     }
 
