@@ -51,7 +51,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     public static int counter = 0;
     DatabaseReference DR_setDataAution, DR_setEndPrice, DR_user,DR_favorite;
     FirebaseUser firebaseAuth;
-    String aution_userId, aution_firstName, aution_image;
+    String aution_userId, aution_firstName, aution_image, favorit_item;
     AdsModel adsModel;
     UserModel userModel;
     String fromActivity;
@@ -100,6 +100,26 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         }
 
+        DR_favorite.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    favorit_item = dataSnapshot1.child("id_post").getValue(String.class);
+                    if (favorit_item.equals(adsModel.getId_post())) {
+
+                        image_favoriteOff.setVisibility(View.GONE);
+                        image_favoriteOn.setVisibility(View.VISIBLE);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         DR_setEndPrice.child("auction").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -138,11 +158,14 @@ public class PostDetailsActivity extends AppCompatActivity {
         image_favoriteOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                image_favoriteOff.setVisibility(View.GONE);
-                image_favoriteOn.setVisibility(View.VISIBLE);
+                if (firebaseAuth.getUid().toString().equals(null)) {
+                    Toast.makeText(PostDetailsActivity.this, "برجاء تسجيل الدخول", Toast.LENGTH_SHORT).show();
+                } else {
+                    image_favoriteOff.setVisibility(View.GONE);
+                    image_favoriteOn.setVisibility(View.VISIBLE);
 
-                DR_favorite.child(adsModel.id_post+"").setValue(adsModel);
-
+                    DR_favorite.child(adsModel.id_post + "").setValue(adsModel);
+                }
             }
         });
 
@@ -152,6 +175,7 @@ public class PostDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 image_favoriteOn.setVisibility(View.GONE);
                 image_favoriteOff.setVisibility(View.VISIBLE);
+                DR_favorite.child(adsModel.id_post.toString()).removeValue();
             }
         });
         image_back.setOnClickListener(new View.OnClickListener() {

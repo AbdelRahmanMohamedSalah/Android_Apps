@@ -1,32 +1,32 @@
 package com.mazad.mazadangy.adapter;
 
-        import android.content.Context;
-        import android.content.Intent;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ImageView;
-        import android.widget.TextView;
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-        import androidx.annotation.NonNull;
-        import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-        import com.mazad.mazadangy.R;
-        import com.mazad.mazadangy.gui.PostDetails.PostDetailsActivity;
-        import com.mazad.mazadangy.model.AdsModel;
-        import com.mazad.mazadangy.model.UserModel;
-        import com.squareup.picasso.Picasso;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.mazad.mazadangy.R;
+import com.mazad.mazadangy.gui.PostDetails.PostDetailsActivity;
+import com.mazad.mazadangy.model.AdsModel;
+import com.mazad.mazadangy.model.UserModel;
+import com.squareup.picasso.Picasso;
 
-        import java.util.ArrayList;
-        import java.util.Collections;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-        import de.hdodenhof.circleimageview.CircleImageView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Holder> {
     private Context context;
@@ -38,10 +38,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Holder
     String fromActivity;
     UserModel userModel;
 
-    public FavoriteAdapter(Context context, ArrayList<AdsModel> arrayList,String fromActivity) {
+    public FavoriteAdapter(Context context, ArrayList<AdsModel> arrayList, String fromActivity) {
         this.context = context;
         this.arrayList = arrayList;
-        this.fromActivity=fromActivity;
+        this.fromActivity = fromActivity;
     }
 
     public class Holder extends RecyclerView.ViewHolder {

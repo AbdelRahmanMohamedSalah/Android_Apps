@@ -45,42 +45,61 @@ app:cardCornerRadius="10dp">
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/descTv"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:fontFamily="@font/sub_title_font"
-            android:padding="8dp"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            tool:text="مئه ريال سعودي عام 1110 ميلادي" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
 
-        <TextView
-            android:id="@+id/startPriceTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:textSize="17sp"
-            tool:text="السعر يبدأ من 2500 جنية" />
-        <TextView
-            android:id="@+id/endPriceTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:textSize="17sp"
-            tool:text="السعر يبدأ من 2500 جنية" />
+            <TextView
+                android:id="@+id/descTv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/sub_title_font"
+                android:padding="7dp"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                tool:text="مئه ريال سعودي عام 1110 ميلادي" />
 
-        <Button
-            android:id="@+id/interMazadBtn"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@drawable/btn_radius"
-            android:fontFamily="@font/description_font"
-            android:text="دخول المزاد"
-            android:textColor="@color/white" />
+            <LinearLayout
+                android:layout_marginBottom="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+
+                <TextView
+                    android:id="@+id/startPriceTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textSize="17sp"
+                    tool:text="السعر يبدأ من 2500 جنية" />
+
+                <TextView
+                    android:id="@+id/endPriceTv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:textSize="17sp"
+                    tool:text="السعر يبدأ من 2500 جنية" />
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/interMazadBtn"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/btn_radius"
+                android:fontFamily="@font/description_font"
+                android:text="دخول المزاد"
+                android:textColor="@color/white" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

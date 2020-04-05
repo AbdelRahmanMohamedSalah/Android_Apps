@@ -81,7 +81,7 @@ public class AddAdsActivity extends AppCompatActivity {
                     start_price = etStartPrice.getText().toString();
 
 
-                    if (!(etPandNum.getText().toString().isEmpty() || etDesc.getText().toString().isEmpty() || etDesc.getText().toString().isEmpty())) {
+                    if (!(etPandNum.getText().toString().isEmpty() || etDesc.getText().toString().isEmpty() || etStartPrice.getText().toString().isEmpty())) {
                         if (!(back_sale.equals("0") || day_num.equals("0") || end_time.equals("0") || end_ads.equals("0"))) {
                             Toast.makeText(AddAdsActivity.this, "Ok", Toast.LENGTH_SHORT).show();
 
