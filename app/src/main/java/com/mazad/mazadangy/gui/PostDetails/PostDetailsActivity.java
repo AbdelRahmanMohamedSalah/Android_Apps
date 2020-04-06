@@ -29,6 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.mazad.mazadangy.R;
 import com.mazad.mazadangy.adapter.FollowActionAdapter;
 import com.mazad.mazadangy.gui.UserDetails.UserDetailsActivity;
+import com.mazad.mazadangy.gui.category.CategoryActivity;
 import com.mazad.mazadangy.model.AdsModel;
 import com.mazad.mazadangy.model.Auction;
 import com.mazad.mazadangy.model.UserModel;
@@ -355,11 +356,10 @@ public class PostDetailsActivity extends AppCompatActivity {
                                 DR_setDataAution.child("user_image").setValue(aution_image + "");
                                 DR_setDataAution.child("end_price").setValue(final_price + "");
                                 DR_setDataAution.child("time").setValue(formatter.format(date) + "");
-
-
-                                DR_setEndPrice.child("end_price").setValue(final_price + "");
-                                Toast.makeText(PostDetailsActivity.this, "ok", Toast.LENGTH_SHORT).show();
+                                DR_setEndPrice.child("end_price").setValue(final_price + "").isSuccessful();
                                 dialogEnterCom.hide();
+                                startActivity(new Intent(PostDetailsActivity.this, CategoryActivity.class));
+                                finish();
 
                             }
 

@@ -29,12 +29,13 @@ import com.mazad.mazadangy.gui.category.CategoryActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class AddPostActivity extends AppCompatActivity {
 
     CheckBox checkBox_money;
-    LinearLayout layout_money;
+    LinearLayout layout_money,layoutDate;
     ImageView addBtn, minBtn;
     TextView tvAddMoney, tvStartDate, tvEndDate;
     Button addPost;
@@ -65,7 +66,6 @@ public class AddPostActivity extends AppCompatActivity {
         rgChoise();
         setDate();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
         mRef = mDatabase.child("posts").push();
         currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentFirebaseUser == null) {
@@ -82,7 +82,7 @@ public class AddPostActivity extends AppCompatActivity {
 
                     if (!(etPandNum.getText().toString().isEmpty() || etDesc.getText().toString().isEmpty() || etStartPrice.getText().toString().isEmpty())) {
                         if (!(back_sale.equals("0") || day_num.equals("0") || end_time.equals("0") || end_ads.equals("0"))) {
-                            Toast.makeText(AddPostActivity.this, "Ok", Toast.LENGTH_SHORT).show();
+                       //     Toast.makeText(AddPostActivity.this, "Ok", Toast.LENGTH_SHORT).show();
 
                             mRef.child("back_sale").setValue(back_sale);
                             mRef.child("count_price").setValue(addmoneyNumber + "");
@@ -103,7 +103,7 @@ public class AddPostActivity extends AppCompatActivity {
                             Intent intent = new Intent(AddPostActivity.this, CategoryActivity.class);
                             startActivity(intent);
                             finish();
-                            Toast.makeText(AddPostActivity.this, pand_num + "" + desc_money + "" + start_price + "" + back_sale + "" + day_num + "" + start_ads + "" + end_ads + "" + end_time + "" + status_money, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(AddPostActivity.this, pand_num + "" + desc_money + "" + start_price + "" + back_sale + "" + day_num + "" + start_ads + "" + end_ads + "" + end_time + "" + status_money, Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(AddPostActivity.this, "برجاء اختيار جميع العناصر", Toast.LENGTH_SHORT).show();
                         }
@@ -207,6 +207,8 @@ public class AddPostActivity extends AppCompatActivity {
         etStartPrice = findViewById(R.id.etStartPriceAddAdsActivity);
         adsImage = findViewById(R.id.imageAddAdsActivity);
         addPost = findViewById(R.id.addBtnAddAdsActivity);
+        layoutDate=findViewById(R.id.layoutDateAddPostActivity);
+
     }
 
     void addMoney() {
@@ -300,7 +302,9 @@ public class AddPostActivity extends AppCompatActivity {
             }
         });
 
-
+        if(!checkBox_money.isChecked()){
+            addmoneyNumber=0;
+        }
         rgBackSale.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
@@ -324,10 +328,21 @@ public class AddPostActivity extends AppCompatActivity {
                 switch (checkedId) {
                     case R.id.rbOneDayAdsLengthAddAdsActivity:
                         day_num = "يوم واحد";
+                        Calendar calendar = Calendar.getInstance();
+                        int day = calendar.get(Calendar.DAY_OF_MONTH);
+                        int month = calendar.get(Calendar.MONTH);
+                        int year = calendar.get(Calendar.YEAR);
+                        start_ads = (day + "/" + (month + 1) + "/" + (year) + " 24:00:00");
+                        end_ads = (day + "/" + (month + 1) + "/" + (year) + " 24:00:00");
+                        layoutDate.setVisibility(View.GONE);
+//
+//
 //                        Toast.makeText(AddAdsActivity.this, "One Day", Toast.LENGTH_SHORT).show();
                         // do operations specific to this selection
                         break;
                     case R.id.rbMoreDaysAdsLengthAddAdsActivity:
+                        layoutDate.setVisibility(View.VISIBLE);
+
                         // do operations specific to this selection
 //                        Toast.makeText(AddAdsActivity.this, "MoreDays", Toast.LENGTH_SHORT).show();
                         day_num = "عدة ايام";

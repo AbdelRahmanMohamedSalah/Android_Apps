@@ -2,6 +2,7 @@ package com.mazad.mazadangy.gui.AddAds;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,12 +19,19 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.mazad.mazadangy.R;
 import com.mazad.mazadangy.gui.category.CategoryActivity;
 
@@ -35,7 +43,7 @@ public class AddAdsActivity extends AppCompatActivity {
 
 
     CheckBox checkBox_money;
-    LinearLayout layout_money;
+    LinearLayout layout_money, layoutDate;
     ImageView addBtn, minBtn;
     TextView tvAddMoney, tvStartDate, tvEndDate;
     Button addPost;
@@ -44,7 +52,11 @@ public class AddAdsActivity extends AppCompatActivity {
     DatabaseReference mRef;
     FirebaseUser currentFirebaseUser;
 
-
+    private static final int RUSLET_LOAD_IMAGE = 1;
+    static Uri image_item;
+    String uri_load;
+    private StorageReference mStorageReference;
+    StorageReference filepath;
     Calendar calendar;
     DatePickerDialog datePickerDialog;
     RadioGroup rgBackSale, rgAdsLength, rgAdsTime;
@@ -55,6 +67,10 @@ public class AddAdsActivity extends AppCompatActivity {
     String imageEncoded;
     List<String> imagesEncodedList;
     public static int addmoneyNumber;
+
+    int PICK_IMAGE_REQUEST = 111;
+    Uri filePath;
+
     public String back_sale = "0", count_price, desc_money, end_ads = "0", day_num = "0", start_ads, end_time = "0", pand_num, start_price, status_money, stop_ad;
 
     @Override
@@ -67,6 +83,7 @@ public class AddAdsActivity extends AppCompatActivity {
         setDate();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         mRef = mDatabase.child("mony_post").push();
         currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentFirebaseUser == null) {
@@ -83,7 +100,7 @@ public class AddAdsActivity extends AppCompatActivity {
 
                     if (!(etPandNum.getText().toString().isEmpty() || etDesc.getText().toString().isEmpty() || etStartPrice.getText().toString().isEmpty())) {
                         if (!(back_sale.equals("0") || day_num.equals("0") || end_time.equals("0") || end_ads.equals("0"))) {
-                            Toast.makeText(AddAdsActivity.this, "Ok", Toast.LENGTH_SHORT).show();
+                            //     Toast.makeText(AddPostActivity.this, "Ok", Toast.LENGTH_SHORT).show();
 
                             mRef.child("back_sale").setValue(back_sale);
                             mRef.child("count_price").setValue(addmoneyNumber + "");
@@ -104,7 +121,7 @@ public class AddAdsActivity extends AppCompatActivity {
                             Intent intent = new Intent(AddAdsActivity.this, CategoryActivity.class);
                             startActivity(intent);
                             finish();
-                            Toast.makeText(AddAdsActivity.this, pand_num + "" + desc_money + "" + start_price + "" + back_sale + "" + day_num + "" + start_ads + "" + end_ads + "" + end_time + "" + status_money, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(AddPostActivity.this, pand_num + "" + desc_money + "" + start_price + "" + back_sale + "" + day_num + "" + start_ads + "" + end_ads + "" + end_time + "" + status_money, Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(AddAdsActivity.this, "برجاء اختيار جميع العناصر", Toast.LENGTH_SHORT).show();
                         }
@@ -191,7 +208,6 @@ public class AddAdsActivity extends AppCompatActivity {
 //        }
 
     }
-
     public void intilizeData() {
         checkBox_money = findViewById(R.id.checkBoxMoneyAddAdsActivity);
         layout_money = findViewById(R.id.layoutAddMoneyAddAdsActivity);
@@ -208,6 +224,7 @@ public class AddAdsActivity extends AppCompatActivity {
         etStartPrice = findViewById(R.id.etStartPriceAddAdsActivity);
         adsImage = findViewById(R.id.imageAddAdsActivity);
         addPost = findViewById(R.id.addBtnAddAdsActivity);
+        layoutDate = findViewById(R.id.layoutDateAddAdsActivity);
     }
 
     void addMoney() {
@@ -252,6 +269,7 @@ public class AddAdsActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         tvStartDate.setText(dayOfMonth + "/" + (month + 1) + "/" + (year));
+
                         start_ads = (dayOfMonth + "/" + (month + 1) + "/" + (year)+" 24:00:00");
 
                     }
@@ -290,17 +308,22 @@ public class AddAdsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    System.out.println("checked ");
                     layout_money.setVisibility(View.VISIBLE);
                     addMoney();
                 } else {
                     layout_money.setVisibility(View.GONE);
                     addmoneyNumber = 0;
                     tvAddMoney.setText(50 + "");
+                    System.out.println("not cheacked " + addmoneyNumber);
                 }
 
             }
         });
 
+        if (!checkBox_money.isChecked()) {
+            addmoneyNumber = 0;
+        }
 
         rgBackSale.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -325,12 +348,20 @@ public class AddAdsActivity extends AppCompatActivity {
                 switch (checkedId) {
                     case R.id.rbOneDayAdsLengthAddAdsActivity:
                         day_num = "يوم واحد";
+                        Calendar calendar = Calendar.getInstance();
+                        int day = calendar.get(Calendar.DAY_OF_MONTH);
+                        int month = calendar.get(Calendar.MONTH);
+                        int year = calendar.get(Calendar.YEAR);
+                        start_ads = (day + "/" + (month + 1) + "/" + (year) + " 24:00:00");
+                        end_ads = (day + "/" + (month + 1) + "/" + (year) + " 24:00:00");
+                        layoutDate.setVisibility(View.GONE);
 //                        Toast.makeText(AddAdsActivity.this, "One Day", Toast.LENGTH_SHORT).show();
                         // do operations specific to this selection
                         break;
                     case R.id.rbMoreDaysAdsLengthAddAdsActivity:
                         // do operations specific to this selection
 //                        Toast.makeText(AddAdsActivity.this, "MoreDays", Toast.LENGTH_SHORT).show();
+                        layoutDate.setVisibility(View.VISIBLE);
                         day_num = "عدة ايام";
 
                         break;
@@ -381,6 +412,17 @@ public class AddAdsActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+
+            Uri selectedimage = data.getData();
+            adsImage.setImageURI(selectedimage);
+            image_item = selectedimage;
+        } catch (Exception e) {
+        }
     }
 
 

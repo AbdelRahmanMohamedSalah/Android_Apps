@@ -90,6 +90,7 @@ app:cardCornerRadius="10dp">
 
 
             <Button
+                android:clickable="false"
                 android:id="@+id/interMazadBtn"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"

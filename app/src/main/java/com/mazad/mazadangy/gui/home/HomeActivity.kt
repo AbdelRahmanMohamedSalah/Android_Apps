@@ -11,6 +11,7 @@ import com.mazad.mazadangy.R
 import com.mazad.mazadangy.adapter.AdsAdapter
 import com.mazad.mazadangy.gui.AddAds.AddAdsActivity
 import com.mazad.mazadangy.gui.AddAds.AddPostActivity
+import com.mazad.mazadangy.gui.category.CategoryActivity
 import com.mazad.mazadangy.gui.favorite.FavoritePostActivity
 import com.mazad.mazadangy.model.AdsModel
 import com.mazad.mazadangy.utels.ToastUtel
@@ -31,7 +32,6 @@ class HomeActivity : AppCompatActivity(), HomeInterface {
         homePresenter = HomePresenter(this)
         checkCat()
 
-
         val bottomNavigationView =
             findViewById(R.id.bottom_navigation) as BottomNavigationView
         bottomNavigationView.setOnNavigationItemSelectedListener(object :
@@ -51,8 +51,9 @@ class HomeActivity : AppCompatActivity(), HomeInterface {
                         }
                     }
                     R.id.home -> {
-                        finish();
-                        startActivity(getIntent());
+                        intent_obj = Intent(this@HomeActivity, CategoryActivity::class.java)
+                        startActivity(intent_obj)
+                        finish()
                     }
                     R.id.favorit ->{
 
@@ -83,6 +84,8 @@ class HomeActivity : AppCompatActivity(), HomeInterface {
 
 
     }
+
+
     private fun checkCat() {
         var checkIntent: Intent = getIntent()
         catCheck = checkIntent.getStringExtra("category")
@@ -106,7 +109,7 @@ class HomeActivity : AppCompatActivity(), HomeInterface {
     override fun sucuss(adsList: ArrayList<AdsModel>) {
         adsAdapter = AdsAdapter(this, adsList, catCheck)
         PostsRecycler.adapter = adsAdapter
-        ToastUtel.errorToast(this,"data is done")
+      //  ToastUtel.errorToast(this,"data is done")
 
 
     }

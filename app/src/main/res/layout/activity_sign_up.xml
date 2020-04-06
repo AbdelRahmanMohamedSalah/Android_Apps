@@ -211,6 +211,7 @@
                 </LinearLayout>
 
                 <Button
+
                     android:id="@+id/signUpBtn"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
@@ -223,6 +224,13 @@
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
+        <ProgressBar
+            android:id="@+id/progressbarSignUpActivity"
+            android:visibility="gone"
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorPrimary" />
 
             </LinearLayout>
 

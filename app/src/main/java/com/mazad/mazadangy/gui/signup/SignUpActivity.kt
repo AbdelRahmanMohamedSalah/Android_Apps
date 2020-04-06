@@ -1,3 +1,4 @@
+
 package com.mazad.mazadangy.gui.signup
 
 import android.app.Activity
@@ -12,13 +13,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
 import com.mazad.mazadangy.R
 import com.mazad.mazadangy.utels.ToastUtel
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -33,7 +31,7 @@ class SignUpActivity : AppCompatActivity(), SignUpInterface {
     lateinit var signUpPresenter: SignUpPresenter
     lateinit var firebaseDatabase: FirebaseDatabase
     lateinit var databaseRefrance: DatabaseReference
-    lateinit var key: String
+    lateinit var uri_load: String
     private var filePath: Uri? = null
     private var firebaseStore: FirebaseStorage? = null
     private var storageReference: StorageReference? = null
@@ -54,10 +52,13 @@ class SignUpActivity : AppCompatActivity(), SignUpInterface {
         firebaseStore = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
 
+        progressbarSignUpActivity.visibility = View.GONE
+
         signUpBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                signUpData()
 
+                signUpData()
+                progressbarSignUpActivity.visibility = View.VISIBLE
 
             }
         })
@@ -133,12 +134,11 @@ class SignUpActivity : AppCompatActivity(), SignUpInterface {
         databaseRefrance.child("email").setValue(emailTv.text.toString().trim())
         databaseRefrance.child("phoneNumber").setValue(phoneTv.text.toString().trim())
         databaseRefrance.child("uId").setValue(uId)
-        databaseRefrance.child("image_profile").setValue(key)
+        databaseRefrance.child("image_profile").setValue(uri_load)
         databaseRefrance.child("interest").setValue(interistTv.text.toString().trim())
-        databaseRefrance.child("categories").child("anteka").setValue(antekaFav)
-        databaseRefrance.child("categories").child("other").setValue(otherFav)
+//        databaseRefrance.child("categories").child("anteka").setValue(antekaFav)
+//        databaseRefrance.child("categories").child("other").setValue(otherFav)
 
-        ToastUtel.showSuccessToast(this, "تم تسجيل حساب جديد بنجاح")
         finish()
     }
 
@@ -180,6 +180,8 @@ class SignUpActivity : AppCompatActivity(), SignUpInterface {
                 }
             }
         }
+        pickImageFromGallery()
+
     }
 
     //handle result of picked image
@@ -205,26 +207,47 @@ class SignUpActivity : AppCompatActivity(), SignUpInterface {
 
     private fun uploadImage() {
         if (filePath != null) {
-           val ref = storageReference?.child("uploads/" + UUID.randomUUID().toString())
-            ref?.putFile(filePath!!)
+            val ref = storageReference?.child("uploads/" + UUID.randomUUID().toString())
+            ref?.putFile(filePath!!)?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val downloadUri = task.getResult()
 
-                ?.addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> {
-                    //                    Toast.makeText(
-//                        this@ImageViewActivity5,
-//                        "Image Uploaded",
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-                })?.addOnFailureListener(OnFailureListener { e ->
-                    //                    Toast.makeText(
-//                        this@ImageViewActivity5,
-//                        "Image Uploading Failed " + e.message,
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-                })
-key=filePath.toString();
-        } else {
-            Toast.makeText(this, "Please Select an Image", Toast.LENGTH_SHORT).show()
+                    //DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(mAu.getInstance().getCurrentUser().getUid());
+                    val url = downloadUri!!.toString()
+
+                    uri_load =
+                        filePath.toString()
+                    println("uri load= " + uri_load + "");
+                    println("download uri = " + downloadUri + "");
+//                    databaseRefrance.child("image_profile").setValue(downloadUri.toString())
+
+                    // finish()
+                }
+            }
         }
+        //  key=uri_load.toString();
+//                        databaseRefrance.child("image_profile").setValue(uri_load.toString())
+
+
+        //   Upload upload = new Upload(editTextName.getText().toString().trim(),
+
+        // Toast.makeText(getContext(),url,Toast.LENGTH_LONG).show();
+        //  String uploadId = ref.push().getKey();
+        //ref.child(uploadId).setValue(upload);
+
+
+//            ?.addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> {
+//                    fun onSuccess(taskSnapshot: UploadTask.TaskSnapshot) {
+//                        val uri_load =
+//                            taskSnapshot.storage.downloadUrl.result
+//                        println("uri = "+uri_load);
+        //  key=uri_load.toString();
+//                        databaseRefrance.child("image_profile").setValue(uri_load.toString())
+//                        ToastUtel.showSuccessToast(this, "تم تسجيل حساب جديد بنجاح")
+//                        if (uri_load.toString().length > 7) {
+//
+//                            finish()
+
     }
 
 

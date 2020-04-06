@@ -22,10 +22,11 @@ class HomePresenter {
             dataRefrance.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     for (data: DataSnapshot in dataSnapshot.children) {
-                        ToastUtel.errorToast(context,"data is done")
+                    //    ToastUtel.errorToast(context,"data is done")
 
                         var adsModel: AdsModel? = data.getValue(AdsModel::class.java)
                         listAds.add(adsModel!!)
+
                     }
                     homeInterface.sucuss(listAds)
 

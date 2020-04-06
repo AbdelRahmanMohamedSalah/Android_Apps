@@ -90,8 +90,8 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
         holder.countDownTimerTextView.text = adsList[position].end_time
 
         var s: String = adsList[position].start_price
-        holder.startPriceTv.text="السهر يبدأ من "+adsList[position].start_price
-        holder.endPriceTv.text="السهر الحالى "+adsList[position].end_price
+        holder.startPriceTv.text="السعر يبدأ من "+adsList[position].start_price
+        holder.endPriceTv.text="السعر الحالى "+adsList[position].end_price
 
         var st:String=adsList[position].end_ads
         UID = adsList[position].id_post
@@ -289,9 +289,9 @@ class AdsAdapter() : RecyclerView.Adapter<AdsAdapter.VH>() {
             override fun onFinish() {
                 dateTv.text = "Saled!"
                 System.out.println("UID = " + UID);
-                //databaseRefrance.child(UID + "").removeValue();
-//                context.finish();
+                databaseRefrance.child(UID + "").removeValue();
 //                context.startActivity(getIntent());
+
             }
         }.start()
     }
