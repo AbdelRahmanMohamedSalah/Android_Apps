@@ -150,6 +150,8 @@ public class PostDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(PostDetailsActivity.this, UserDetailsActivity.class);
                 intent.putExtra("UserModelPostDetailsActivity", userModel);
+                intent.putExtra("fromActivity", "postDetailsActivity");
+
                 startActivity(intent);
             }
         });

@@ -14,6 +14,7 @@
         android:orientation="vertical">
 
         <TextView
+
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
@@ -146,7 +147,12 @@
             android:textColor="#fff"
             android:textSize="25sp"
             android:textStyle="bold" />
-
+<ProgressBar
+    android:id="@+id/progressChangeItemEditProfileActivity"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"/>
 
     </LinearLayout>
 

@@ -12,7 +12,7 @@ class UserModel : Serializable {
     lateinit var image_profile: String
 
     // lateinit var categories:String
-    lateinit var categories: List<String>
+//    lateinit var categories: List<String>
 
     constructor(
         uId: String,

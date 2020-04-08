@@ -26,7 +26,9 @@
             android:theme="@style/nobar" />
         <activity
             android:name=".gui.home.HomeActivity"
-            android:theme="@style/nobar" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+<!--        android:theme="@style/nobar" />-->
         <activity
             android:name=".gui.signup.SignUpActivity"
             android:theme="@style/nobar" >

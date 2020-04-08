@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackColor"
+    tools:context=".gui.home.HomeActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/blackColor"
+                android:visibility="gone"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragmentConteinr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_navigation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="25dp"
+                    android:src="@drawable/card_icon"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/nav_btn"
+                    android:layout_width="55dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="end"
+                    android:layout_marginLeft="240dp"
+                    android:src="@drawable/menu_icon" />
+            </LinearLayout>
+            =
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/PostsRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        />
+        =
+    </FrameLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:background="#fff"
+        app:itemIconSize="35sp"
+        app:itemIconTint="@color/blackColor"
+        app:itemTextColor="@color/dark_white"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</RelativeLayout>
